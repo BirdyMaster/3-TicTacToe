@@ -14,6 +14,7 @@ body {
 .board {
     width: 100vw;
     height: 100vh;
+    position: relative;
 
     display: grid;
     align-content: center;
@@ -22,14 +23,129 @@ body {
     grid-template-columns: repeat(3, auto);
     column-gap: 5px;
     row-gap: 5px;
+
+    
 }
 
 .cell {
     width: var(--cell-size);
     height: var(--cell-size);
     background-color: rgb(91, 91, 91);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    
 }
 
-.cell.x::before {
-    
+.cell.x,
+.cell.o {
+    cursor: not-allowed;
+}
+
+
+/* ======================================= */
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover:after  {
+    content: '';
+
+    background-color: rgb(255, 255, 154);
+    width: 15px;
+    height: calc(var(--cell-size) * 0.9);
+
+    position: absolute;
+    border-radius: 20px;
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.o):hover::before{
+    transform: rotate(-45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::after  {
+    transform: rotate(45deg);
+}
+
+/* BACKGROUND */
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after   {
+    background-color: rgb(162, 162, 138);
+}
+
+
+/* ======================================= */
+.cell.o::before,
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover:after  {
+    content: '';
+
+    position: absolute;
+    border-radius: 200px;
+}
+
+.cell.o::before,
+.board.o .cell:not(.x):not(.o):hover::before {
+    width: calc(var(--cell-size) * 0.75);
+    height: calc(var(--cell-size) * 0.75);
+    background-color: rgb(255, 255, 154);
+}
+
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover:after {
+    width: calc(var(--cell-size) * 0.45);
+    height: calc(var(--cell-size) * 0.45);
+    background-color: rgb(91, 91, 91);
+}
+
+.board.o .cell:not(.x):not(.o):hover::before  {
+    background-color: rgb(162, 162, 138);
+}
+/* ======================================= */
+
+
+
+
+.endScreen {
+    background-color: rgba(0, 0, 0, 0.904);
+    position: absolute;
+    color: rgb(231, 231, 231);
+
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
+
+.endScreen.show {
+    display: flex;
+}
+
+button {
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(234, 236, 196);
+
+    font-size: 15px;
+    font-weight: 600;
+    transition: 150ms;
+
+    cursor: pointer;
+}
+button:hover {
+    background-color: rgb(176, 177, 148);
 }
