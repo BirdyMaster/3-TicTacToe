@@ -1,0 +1,35 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --cell-size: 100px
+}
+
+body {
+    background-color: rgb(62, 62, 62);
+    margin: 0;
+}
+
+.board {
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+    grid-template-columns: repeat(3, auto);
+    column-gap: 5px;
+    row-gap: 5px;
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background-color: rgb(91, 91, 91);
+}
+
+.cell.x::before {
+    
+}
